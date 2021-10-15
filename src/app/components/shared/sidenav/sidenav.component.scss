@@ -1,0 +1,23 @@
+.mat-nav-list{
+    .mat-list-item{border-left: 5px solid #ff990000;
+        .mat-icon{
+             color: #00587f;
+        }}
+    .mat-list-item.active{background: #ffe8c6;
+        border-left: 5px solid #ff6000;
+        .mat-icon{
+            color: #ff6000;
+       }}
+}
+.mat-expansion-panel{ border-radius: 0!important;
+    .mat-expansion-panel-header {
+        padding-left: 10px !important;
+        line-height: 42px;}
+    
+}
+.mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing) {
+    margin-bottom: 2px;
+ }
+ .mat-expansion-panel-spacing{ margin: 0  !important;}
+ .line-height-42{ line-height: 42px;}
+::ng-deep .mat-expansion-indicator::after{ margin-top: -8px;}

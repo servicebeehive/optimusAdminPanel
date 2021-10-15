@@ -1,0 +1,25 @@
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <button mat-icon-button mat-stroked-button  id="menu" (click)="openclose()" color="primary" class="bg-white d-flex line-height justify-content-center align-items-center">
+            <mat-icon>{{this.toggleActive==false?'navigate_before':'navigate_next'}}</mat-icon>
+          </button>
+     
+      <span class="spacer"></span>
+      <button mat-icon-button  class=" line-height justify-content-center align-items-center">
+        <mat-icon>notifications</mat-icon>
+      </button>
+   <div>
+  
+      <div class="media ml-3 align-items-center">
+        <span class="avatar avatar-sm rounded-circle">
+          <img alt="Image placeholder" src="{{userImg}}">
+        </span>
+        <div class="media-body  ml-2  d-none d-lg-block">
+          <span class="mb-0 text-sm ">Admin</span>
+        </div>
+      </div>
+    </div>
+    </mat-toolbar-row>
+
+  
+  </mat-toolbar>

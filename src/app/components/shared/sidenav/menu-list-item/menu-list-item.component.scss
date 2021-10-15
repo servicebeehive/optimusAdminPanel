@@ -1,0 +1,26 @@
+.mat-list-item {
+    font-size: 14px !important;
+}
+.routeIcon{
+    font-size: 19px !important;
+    height: 17px !important;
+    width: 24px !important;
+}
+::ng-deep.mat-list-item-content{ justify-content: space-between; align-items: center;}
+::ng-deep .navchild{ 
+    .mat-list-item {
+        padding-left: 20px;
+    }
+}
+:host {
+  
+    .mat-list-item.active {
+      background-color: #ccc;
+    }
+    &:hover,
+    &:focus {
+      >.mat-list-item:not(.expanded) {
+        background-color: #ccc !important;
+      }
+    }
+  }

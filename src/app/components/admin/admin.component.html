@@ -1,0 +1,10 @@
+<mat-drawer-container class="mat-drawer-container">
+    <mat-drawer #sidenav mode="side" opened="true">
+        <app-sidenav></app-sidenav>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-navbar></app-navbar>
+     
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
