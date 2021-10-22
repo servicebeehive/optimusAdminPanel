@@ -40,8 +40,12 @@ export class LoginComponent implements OnInit {
       .getUserDetails(loginDetail_data)
       .toPromise();
     if (result.success) {
-      this.accountService.setAccessToken(result.data);
-      this.router.navigate(["admin/dashboard"]);
+      if (result.data?.attribute1 === "admin") {
+        this.accountService.setAccessToken(result.data);
+        this.router.navigate(["admin/dashboard"]);
+      } else {
+        console.log("User don't have access");
+      }
     } else {
       console.log("invalid User");
     }
