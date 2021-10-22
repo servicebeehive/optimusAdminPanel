@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpIntercertor } from "./components/shared/interceptor/http-intercertor";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { HttpIntercertor } from "./components/shared/interceptor/http-intercerto
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpIntercertor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
