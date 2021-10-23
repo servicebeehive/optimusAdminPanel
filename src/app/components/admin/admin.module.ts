@@ -11,14 +11,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { PayoutProcessingComponent } from './payout-processing/payout-processing.component';
 import { PayoutThresholdComponent } from './payout-threshold/payout-threshold.component';
 import { CommoncomponentsModule } from '../shared/commoncomponents/commoncomponents.module';
-
+import { GeneralSettingComponent } from './general-setting/general-setting.component';
+import { WithdrawApprovalComponent } from './withdraw-approval/withdraw-approval.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AdminComponent,
     PlanCreationComponent,
     DashboardAdminComponent,
     PayoutProcessingComponent,
-    PayoutThresholdComponent
+    PayoutThresholdComponent,
+    GeneralSettingComponent,
+    WithdrawApprovalComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +31,11 @@ import { CommoncomponentsModule } from '../shared/commoncomponents/commoncompone
     MatSidenavModule,
     SharedModule,
     CommoncomponentsModule,
+    MatTableModule,
   
     SidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ]
 })
 export class AdminModule { }
