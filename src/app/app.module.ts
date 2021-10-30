@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpIntercertor } from "./components/shared/interceptor/http-intercertor";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-
+import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,6 +15,7 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpIntercertor, multi: true },

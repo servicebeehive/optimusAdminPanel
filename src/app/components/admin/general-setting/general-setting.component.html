@@ -1,57 +1,84 @@
 <mat-toolbar color="accent">
     <div class=" d-flex justify-content-between">
         <div>General Setting </div>
-     
     </div>
-
-
-
 </mat-toolbar>
 
-
 <div class=" container-fluid pt-2">
-
     <div class=" card mb-3">
         <div class=" card-body">
-
-            <form>
-
-
+            <form [formGroup]="addGeneralSettingDetail">
                 <div class="row">
                     <div class="col-md-3">
                         <div class=" form-group">
-                            <label class="form-control-label">Min Withdraw limit</label>
-                            <input type="text" class=" form-control">
+                            <label class="form-control-label">currencycode</label>
+                            <input type="text" class=" form-control" formControlName="currencycode">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class=" form-group">
-                            <label class="form-control-label">USDT Rate</label>
-                            <input type="text" class=" form-control">
+                            <label class="form-control-label">usdratebyexch</label>
+                            <input type="text" class=" form-control" formControlName="usdratebyexch">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class=" form-group">
+                            <label class="form-control-label">usdratebyadmin</label>
+                            <input type="text" class=" form-control" formControlName="usdratebyadmin">
                         </div>
                     </div>
                     <div class="col-md-4 pt-md-4 mt-3">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Is Admin USD Rate Active
-                        </label>
-                      </div>
-</div>
-<div class="col-md-3 pt-md-4">
-    <button class="btn btn-danger   btn-min-width">Save</button>
-</div>
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                                formControlName="CheckISAdminRate">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Is Admin USD Rate Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class=" form-group">
+                            <label class="form-control-label">infrapercentage</label>
+                            <input type="text" class=" form-control" formControlName="infrapercentage">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class=" form-group">
+                            <label class="form-control-label">withdrawthreshlimit</label>
+                            <input type="text" class=" form-control" formControlName="withdrawthreshlimit">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class=" form-group">
+                            <label class="form-control-label">totalunit</label>
+                            <input type="text" class=" form-control" formControlName="totalunit">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class=" form-group">
+                            <label class="form-control-label">totalunitsold</label>
+                            <input type="text" class=" form-control" formControlName="totalunitsold">
+                        </div>
+                    </div>
 
                 </div>
-            
-
+                <div class="row">
+                    <div class="col-md-4 pt-md-4 mt-3">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                                formControlName="isactive">
+                            <label class="form-check-label" for="defaultCheck1">
+                                isactive
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pt-md-4">
+                        <button class="btn btn-danger btn-min-width" type="button" (click)="onSave()">Save</button>
+                    </div>
+                </div>
             </form>
-
-
         </div>
     </div>
-
-
-
-
 </div>
