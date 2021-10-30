@@ -23,6 +23,7 @@
     "bootstrap": "^4.5.2",
     "bootstrap-icons": "^1.5.0",
     "ngx-editor": "^10.1.0",
+    "ngx-toastr": "^14.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

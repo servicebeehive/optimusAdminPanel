@@ -10,100 +10,95 @@
             </option>
         </select>
     </div>
-
-
-
 </mat-toolbar>
 
-
 <div class=" container-fluid pt-2">
-
     <div class=" card mb-3">
         <div class=" card-body">
-
-            <form>
-
-
+            <form [formGroup]="addPlanDetail">
                 <div class="row">
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Plan Name</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="planName" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Plan Tag</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="planTag" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Contract Month</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="contractMonth" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Minimum Unit</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="minimumUnit" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label"> Max Unit</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="maxUnit" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label"> Per Unit Price</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="perUnitPrice" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label"> Is Stock Available</label>
-                            <input type="text" class=" form-control">
+                            <select class="form-control ml-3" formControlName="isStockAvailable">
+                                <option value="Y">
+                                    YES
+                                </option>
+                                <option value="N">
+                                    NO
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Maintenance Percentage</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="maintenancePercentage" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Discount</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="discount" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class=" form-group">
                             <label class="form-control-label">Payout</label>
-                            <input type="text" class=" form-control">
+                            <input type="text" formControlName="payout" class=" form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class=" form-group">
                             <label class="form-control-label">Comment</label>
-                            <textarea class="form-control"></textarea>
-
+                            <textarea formControlName="comment" class="form-control"></textarea>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="d-flex  w-100 justify-content-end ">
-
-                    <button class="btn btn-danger   btn-min-width">Save</button>
+                    <button class="btn btn-danger btn-min-width" *ngIf="!showUpdate"
+                        (click)="onSavePlan()">Save</button>
+                    <button class="btn btn-danger btn-min-width" *ngIf="showUpdate"
+                        (click)="onUpdatePlan()">Update</button>
+                    <button class="btn btn-danger btn-min-width" (click)="onReset()">Reset</button>
                 </div>
-
             </form>
-
-
         </div>
     </div>
 
@@ -111,14 +106,55 @@
         <div class=" card-header  bg-primary">
             Plan List
         </div>
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="no">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.planid}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Plan Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.planname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="currencycode">
+                <th mat-header-cell *matHeaderCellDef> Currency Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.currencycode}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ContractMonth">
+                <th mat-header-cell *matHeaderCellDef> Contract Month </th>
+                <td mat-cell *matCellDef="let element"> {{element.contract}} Months </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+
+                    <span class="badge" [ngClass]="element.isactive==''?'badge-success':'badge-light'">
+                        {{element.isactive=='Y'?'Active':'Inactive'}}
+                    </span>
+                </td>
+            </ng-container>
 
 
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element"> <button mat-icon-button [matMenuTriggerFor]="menu"
+                        color="primary"><span class="material-icons">
+                            more_horiz
+                        </span></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onEditPlan(element)">Edit</button>
+                        <button mat-menu-item (click)="onDeletePlan(element)">Delete</button>
+                    </mat-menu>
+                </td>
+            </ng-container>
 
-        <app-posteddatatable class=""></app-posteddatatable>
-
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </div>
-
-
-
 
 </div>

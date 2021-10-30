@@ -6,17 +6,20 @@ import { userDetail } from "src/app/models/user-detail.model";
 })
 export class AccountService {
   public ACCESS_TOKEN?: string | null;
+  public EMAIL_ID?: string | null;
 
   constructor() {}
 
   public setAccessToken(userDetail?: userDetail) {
     if (userDetail?.usertoken == null) {
       this.ACCESS_TOKEN = null;
+      this.EMAIL_ID = null;
       localStorage.removeItem("access-token");
       return;
     }
 
     this.ACCESS_TOKEN = userDetail.usertoken;
+    this.EMAIL_ID = userDetail.emailid;
     localStorage.setItem("access-token", this.ACCESS_TOKEN);
   }
 
@@ -37,8 +40,17 @@ export class AccountService {
     return this.accessToken != null;
   }
 
+  public getToken(): string | null {
+    return this.ACCESS_TOKEN as string;
+  }
+
+  public getEmail(): string | null {
+    return this.EMAIL_ID as string;
+  }
+
   public removeAccessToken() {
     this.ACCESS_TOKEN = null;
+    this.EMAIL_ID = null;
     localStorage.removeItem("access-token");
     return;
   }

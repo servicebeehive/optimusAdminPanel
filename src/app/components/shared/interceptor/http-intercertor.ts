@@ -32,52 +32,50 @@ export class HttpIntercertor implements HttpInterceptor {
         }),
         body: data,
       });
-    }
-    // else if (
-    //   request.url.includes('getnetworkdata') ||
-    //   request.url.includes('getpaymethod')
-    // ) {
-    //   const tokendata = {
-    //     emailaddress: !this.accountSrvices.getEmail()
-    //       ? ''
-    //       : this.accountSrvices.getEmail(),
-    //     'x-access-token': !this.accountSrvices.getToken()
-    //       ? ''
-    //       : this.accountSrvices.getToken(),
-    //   };
+    } else if (
+      request.url.includes("getnetworkdata") ||
+      request.url.includes("getpaymethod")
+    ) {
+      const tokendata = {
+        emailaddress: !this.accountSrvices.getEmail()
+          ? ""
+          : this.accountSrvices.getEmail(),
+        "x-access-token": !this.accountSrvices.getToken()
+          ? ""
+          : this.accountSrvices.getToken(),
+      };
 
-    //   const body = {
-    //     ...tokendata,
-    //   };
-    //   request = request.clone({
-    //     headers: new HttpHeaders({
-    //       'Content-Type': 'application/json',
-    //     }),
-    //     body,
-    //   });
-    // }
-    // else {
-    //   // eslint-disable-next-line @typescript-eslint/ban-types
-    //   const reqData = data === null ? null : JSON.parse(data);
-    //   const tokendata = {
-    //     emailaddress: !this.accountSrvices.getEmail()
-    //       ? ''
-    //       : this.accountSrvices.getEmail(),
-    //     'x-access-token': !this.accountSrvices.getToken()
-    //       ? ''
-    //       : this.accountSrvices.getToken(),
-    //   };
-    //   const body = {
-    //     ...reqData,
-    //     ...tokendata,
-    //   };
-    //   request = request.clone({
-    //     headers: new HttpHeaders({
-    //       'Content-Type': 'application/json',
-    //     }),
-    //     body,
-    //   });
-    // }
+      const body = {
+        ...tokendata,
+      };
+      request = request.clone({
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+        }),
+        body,
+      });
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      const reqData = data === null ? null : JSON.parse(data);
+      const tokendata = {
+        emailaddress: !this.accountSrvices.getEmail()
+          ? ""
+          : this.accountSrvices.getEmail(),
+        "x-access-token": !this.accountSrvices.getToken()
+          ? ""
+          : this.accountSrvices.getToken(),
+      };
+      const body = {
+        ...reqData,
+        ...tokendata,
+      };
+      request = request.clone({
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+        }),
+        body,
+      });
+    }
 
     return next.handle(request).pipe(
       tap(

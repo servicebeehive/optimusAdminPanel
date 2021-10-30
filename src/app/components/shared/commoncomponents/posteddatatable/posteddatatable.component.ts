@@ -1,6 +1,6 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from "@angular/cdk/collections";
+import { Component, OnInit } from "@angular/core";
+import { MatTableDataSource } from "@angular/material/table";
 export interface PeriodicElement {
   planname: string;
   no: number;
@@ -9,23 +9,28 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {no: 1, planname: 'Silver',status:false, contractmonth:'22/09/2021'},
-  {no: 2, planname: 'Gold',status:true, contractmonth:'22/09/2021'},
-  {no: 3, planname: 'Diamond',status:true, contractmonth:'22/09/2021'},
- 
+  { no: 1, planname: "Silver", status: false, contractmonth: "22/09/2021" },
+  { no: 2, planname: "Gold", status: true, contractmonth: "22/09/2021" },
+  { no: 3, planname: "Diamond", status: true, contractmonth: "22/09/2021" },
 ];
 @Component({
-  selector: 'app-posteddatatable',
-  templateUrl: './posteddatatable.component.html',
-  styleUrls: ['./posteddatatable.component.scss']
+  selector: "app-posteddatatable",
+  templateUrl: "./posteddatatable.component.html",
+  styleUrls: ["./posteddatatable.component.scss"],
 })
 export class PosteddatatableComponent implements OnInit {
- public checked: boolean=true;
-  constructor() { }
+  public checked: boolean = true;
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-  displayedColumns: string[] = ['no', 'name', 'ContractMonth','status', 'symbol'];
+  ngOnInit(): void {}
+
+  displayedColumns: string[] = [
+    "no",
+    "name",
+    "ContractMonth",
+    "status",
+    "symbol",
+  ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -49,8 +54,10 @@ export class PosteddatatableComponent implements OnInit {
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: PeriodicElement): string {
     if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+      return `${this.isAllSelected() ? "deselect" : "select"} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.no + 1}`;
+    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
+      row.no + 1
+    }`;
   }
 }

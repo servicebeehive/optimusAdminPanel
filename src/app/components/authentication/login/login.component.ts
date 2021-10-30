@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
     const loginDetail_data = new LoginDetail();
     loginDetail_data.emailaddress = this.addloginDetail.value.username;
     loginDetail_data.pwd = this.addloginDetail.value.password;
+    // loginDetail_data.emailaddress = "ranjan0201@gmail.com";
+    // loginDetail_data.pwd = "Test";
     const result: ReturnResult<userDetail> = await this.loginService
       .getUserDetails(loginDetail_data)
       .toPromise();
